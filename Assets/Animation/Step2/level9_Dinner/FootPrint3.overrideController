@@ -1,0 +1,12 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FootPrint3
+  m_Controller: {fileID: 9100000, guid: 92878d415db06d44fa64c0ba593bbaac, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 22ad7459441cc8447b1de5c908587306, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a6a54e9c3ea7cca4a9c5bf9318137bd9, type: 2}

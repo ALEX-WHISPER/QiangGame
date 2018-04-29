@@ -1,0 +1,76 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 960M      (ID=0x139b)
+    Vendor:   NVIDIA
+    VRAM:     1995 MB
+    Driver:   20.19.15.4531
+Begin MonoManager ReloadAssembly
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.048 seconds
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: G:\Unity\_GameDesign\Qiang\Test\QiangGame_Data\Managed\System.dll (this message is harmless)
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.187094 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.467511 ms
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 820.
+Total: 0.926995 ms (FindLiveObjects: 0.068113 ms CreateObjectMapping: 0.067180 ms MarkObjects: 0.590160 ms  DeleteObjects: 0.201074 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.738984 ms
+
+Unloading 143 unused Assets to reduce memory usage. Loaded Objects now: 719.
+Total: 0.688598 ms (FindLiveObjects: 0.062981 ms CreateObjectMapping: 0.060182 ms MarkObjects: 0.335901 ms  DeleteObjects: 0.229532 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.728720 ms
+
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 697.
+Total: 0.634481 ms (FindLiveObjects: 0.039655 ms CreateObjectMapping: 0.038722 ms MarkObjects: 0.401216 ms  DeleteObjects: 0.154421 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.972249 ms
+
+Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 790.
+Total: 0.598091 ms (FindLiveObjects: 0.059715 ms CreateObjectMapping: 0.051784 ms MarkObjects: 0.305110 ms  DeleteObjects: 0.181013 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.804298 ms
+
+Unloading 40 unused Assets to reduce memory usage. Loaded Objects now: 676.
+Total: 0.528578 ms (FindLiveObjects: 0.037322 ms CreateObjectMapping: 0.042920 ms MarkObjects: 0.417544 ms  DeleteObjects: 0.030324 ms)
+
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.655941 ms
+
+Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 746.
+Total: 1.058557 ms (FindLiveObjects: 0.084908 ms CreateObjectMapping: 0.058316 ms MarkObjects: 0.752980 ms  DeleteObjects: 0.161419 ms)
+
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.846286 ms
+
+Unloading 42 unused Assets to reduce memory usage. Loaded Objects now: 730.
+Total: 0.603223 ms (FindLiveObjects: 0.041054 ms CreateObjectMapping: 0.042454 ms MarkObjects: 0.393285 ms  DeleteObjects: 0.125496 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: f924 -> priority: 1 
+  Thread -> id: 14a4 -> priority: 1 
