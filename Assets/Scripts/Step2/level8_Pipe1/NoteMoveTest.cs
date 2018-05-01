@@ -14,7 +14,7 @@ public class NoteMoveTest : MonoBehaviour
     public bool ifStop = false;
 
     private float nextGrow = 0f;
-    private float nextSpeddUp = 0f;
+    private float nextSpeedUp = 0f;
 
     void Start()
     {
@@ -29,15 +29,17 @@ public class NoteMoveTest : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         }
 
+        //  scaling up every fixed interval
         if (Time.time > nextGrow && !ifStop)
         {
             nextGrow = Time.time + growTimeRate;
             ScaleGrow();
         }
 
-        if(Time.time > nextSpeddUp)
+        //  speeding up every fixed interval
+        if(Time.time > nextSpeedUp)
         {
-            nextSpeddUp = Time.time + speedTimeGrowRate;
+            nextSpeedUp = Time.time + speedTimeGrowRate;
             GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -1 * moveSpeed * Time.deltaTime);
             moveSpeed += speedValueGrowRate;
         }
