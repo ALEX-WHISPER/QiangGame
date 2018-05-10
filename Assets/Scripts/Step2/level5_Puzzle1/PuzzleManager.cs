@@ -68,20 +68,6 @@ public class PuzzleManager : MonoBehaviour {
         this.unitPosList.Clear();
     }
 
-    //public void ResetPuzzle()
-    //{
-    //    InitUnitPosList();
-
-    //    foreach (GameObject unit in unitObjList)
-    //    {
-    //        Vector2 thisUnitPos = unitPosList[Random.Range(0, unitPosList.Count - 1)];  //  确认当前元素的新位置
-    //        unit.transform.position = thisUnitPos;
-    //        unitPosList.Remove(thisUnitPos);    //  将已使用的位置向量从 List 中移除，防止不同元素堆叠在同一位置上
-    //    }
-
-    //    unitPosList.Clear();
-    //}
-
     public void UnitSelected(GameObject unit)
     {
         if (isHandling) return;     //  存在两个碎片正在交换位置，此时不能进行对其他碎片的操作
