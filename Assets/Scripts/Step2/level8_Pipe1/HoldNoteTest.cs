@@ -6,33 +6,35 @@ using UnityEngine.UI;
 public class HoldNoteTest : MonoBehaviour {
 
     public NoteEnterTriggerTest noteTrigger;
-    public float changeRate;
+    public float changeRate;    //  reducing rate of scale.y on long note
     public bool ifLeftHoldPan;
-    public GameObject leftTouch;
-    public GameObject rightTouch;
+    public GameObject leftTouch;    //  left touch effect prefab
+    public GameObject rightTouch;   //  right touch effect prefab
 
-    //[HideInInspector]
+    [HideInInspector]
     public bool isClick;
 
-    private GameObject theNote;
-    private GameObject touchObj;
-    private bool ifLong;
-    private bool isUp;
+    private GameObject theNote; //  cuurent note that enters the trigger area on clicking down
+    private GameObject touchObj;    //  touching effect object
+    private bool ifLong;    //  if the current note is long
+    private bool isUp;      //  whether click up
     private NoteMoveTest noteMove;
     private float fillAmount = 1f;
-    // Use this for initialization
+
     void Start()
     {
         EventTriggerTest.Get(gameObject).onPressDown += OnClickDown;
         EventTriggerTest.Get(gameObject).onPressUp += OnClickUp;
     }
 
+    //  click down the interactable panel on whole side
     void OnClickDown(GameObject go)
     {
         isUp = false;
         isClick = true;
         GetAndHandleTheNote();
 
+        //  instantiate the touching effect object on every touch
         if (ifLeftHoldPan)
         {
             touchObj = Instantiate(leftTouch, leftTouch.transform.position, leftTouch.transform.rotation) as GameObject;
@@ -42,10 +44,14 @@ public class HoldNoteTest : MonoBehaviour {
             touchObj = Instantiate(rightTouch, rightTouch.transform.position, rightTouch.transform.rotation) as GameObject;
         }
 
+        //  if the current note is long type
         if (ifLong)
             StartCoroutine(TurnningShort());
+
+        //  if not long type
         else if (!ifLong)
         {
+            //  as long as the note enters the trigger area, then this touch is a successful hit
             if (noteTrigger.ifNoteEnter)
             {
                 noteTrigger.ifSuccess = true;
@@ -54,11 +60,12 @@ public class HoldNoteTest : MonoBehaviour {
         }
     }
 
+    //  click up/loose holding
     void OnClickUp(GameObject go)
     {
         isClick = false;
 
-        Destroy(touchObj);
+        Destroy(touchObj);  //  destroy the touching effect prefab
 
         if (ifLong)
         {
@@ -84,6 +91,7 @@ public class HoldNoteTest : MonoBehaviour {
             OnClickUp(gameObject);
     }
 
+    //  get the reference of the note's moving script to change its moving state when it's a long note
     void GetAndHandleTheNote()
     {
         theNote = noteTrigger.currentNote.note_Obj;
@@ -97,7 +105,8 @@ public class HoldNoteTest : MonoBehaviour {
         }
     }
 
-    private IEnumerator TurnningShort()
+    //  scale the long note on holding down
+    private IEnumerator TurnningShort() 
     {
         while (true)
         {
@@ -109,16 +118,20 @@ public class HoldNoteTest : MonoBehaviour {
                 break;
             }
 
+            //  when the scale.y is tiny enough, trigger to successful hit, then exit this loop
             if (theNote.transform.localScale.y <= 0)
             {
                 theNote.transform.localScale = new Vector3(0f, 0f, 0f);
+
                 noteTrigger.ifSuccess = true;
                 noteTrigger.NoteSuccess();
                 break;
             }
 
+            //  stop the note
             noteMove.ifStop = true;
             
+            //  set new scale every frame
             float newScaleOnY = theNote.transform.localScale.y - changeRate;
             Vector3 newScale = new Vector3(theNote.transform.localScale.x, newScaleOnY, theNote.transform.localScale.z);
             theNote.transform.localScale = newScale;

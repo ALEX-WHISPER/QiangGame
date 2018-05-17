@@ -20,12 +20,12 @@ public class Hand : MonoBehaviour {
     {
         if (GetComponent<GameController>().ifGameOver) return;
 
-        //获取鼠标位置  
+        //  获取鼠标位置  
         Vector3 mousepos = Input.mousePosition;
 
         if (isClicked)
         {
-            //绘制光标图  
+            //  绘制光标图
             GUI.DrawTexture(new Rect(mousepos.x, Screen.height - mousepos.y - offsetOnY, texture_down.width, texture_down.height), texture_down);
         }
 

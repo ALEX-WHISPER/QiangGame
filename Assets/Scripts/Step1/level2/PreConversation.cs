@@ -56,9 +56,8 @@ public class PreConversation : Conversation {
         {
             bagPanel_Copy.SetActive(true);
         }
-        else   //   若对话完毕后点击背包按钮，则打开的是有地图的背包，并将指引手销毁掉
+        else   //   若对话完毕后点击背包按钮，则打开的是有地图的背包
         {
-            //Destroy(guideHandObj);
             bagPanel.SetActive(true);
 
             if(guideHandObj == null)

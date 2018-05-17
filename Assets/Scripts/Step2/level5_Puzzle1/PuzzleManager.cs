@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PuzzleManager : MonoBehaviour {
-    public GameObject[] puzzleUnits;
-    public Transform puzzleBoard;
-    public GameObject winPanel;
+    public GameObject[] puzzleUnits;    //  拼图碎片
+    public Transform puzzleBoard;       //  父物体
+    public GameObject winPanel;         //  本拼图完成后的胜利面板
     public static int selectedCount = 0;
-    public float tweenDuration;
-    public float disSelectDelay;
+    public float tweenDuration;     //  交换位置的位移时长
+    public float disSelectDelay;    //  允许下一次选择碎片的间隔
     public float offset_X;
     public float offset_Y;
     public float width;
@@ -21,16 +21,17 @@ public class PuzzleManager : MonoBehaviour {
 
     private int column = 3;
     private int row = 3;
-    private List<Vector2> unitPosList = new List<Vector2>();
-    private List<GameObject> unitObjList = new List<GameObject>();
+    private List<Vector2> unitPosList = new List<Vector2>();    //  位置信息列表，实例化碎片时，从中随机抽取一条作为实例化的位置
+    private List<GameObject> unitObjList = new List<GameObject>();  //  拼图碎片物体列表
     private GameObject unitInstance = null;
     private bool isHandling = false;
-    private Dictionary<int, Vector2> unitDic = new Dictionary<int, Vector2>();
+
+    //  key: id, value: 每个id所代表的碎片的当前位置，用于判定游戏胜利的字典
+    private Dictionary<int, Vector2> unitDic = new Dictionary<int, Vector2>();  
 
     private GameObject selectedUnit_1;
     private GameObject selectedUnit_2;
-
-	// Use this for initialization
+    
     void Start()
     {
         InitPuzzleUnits();
@@ -52,16 +53,17 @@ public class PuzzleManager : MonoBehaviour {
     {
         InitUnitPosList();
 
+        //  对每个碎片进行遍历，每个碎片都将在各自不同的位置进行实例化
         foreach (GameObject unit in puzzleUnits)
         {
-            Vector2 thisUnitPos = unitPosList[Random.Range(0, unitPosList.Count - 1)];  //  确认当前元素生成的位置
-            this.unitInstance = Instantiate(unit, thisUnitPos, Quaternion.identity);
+            Vector2 thisUnitPos = unitPosList[Random.Range(0, unitPosList.Count - 1)];  //  从位置列表中随机选择一条，作为当前元素生成的位置
+            this.unitInstance = Instantiate(unit, thisUnitPos, Quaternion.identity);    //  在指定位置实例化该元素
             this.unitInstance.GetComponent<SelectUnit>().gameOver = false;
 
-            this.unitInstance.transform.SetParent(puzzleBoard);
-            this.unitDic.Add(unit.GetComponent<SelectUnit>().id, thisUnitPos);
+            this.unitInstance.transform.SetParent(puzzleBoard); //  设置父物体
+            this.unitDic.Add(unit.GetComponent<SelectUnit>().id, thisUnitPos);  //  将id、position作为键值对存入字典中
 
-            this.unitObjList.Add(unitInstance);
+            this.unitObjList.Add(unitInstance);     //  将元素添加至碎片实体列表
             this.unitPosList.Remove(thisUnitPos);    //  将已使用的位置向量从 List 中移除，防止不同元素堆叠在同一位置上
         }
 
@@ -73,7 +75,6 @@ public class PuzzleManager : MonoBehaviour {
         if (isHandling) return;     //  存在两个碎片正在交换位置，此时不能进行对其他碎片的操作
         
         //  若无碎片正在交换位置，则可操作当前选中的碎片
-        //unit.GetComponent<SelectUnit>().OnSelected();
         selectedCount++;
 
         if(selectedCount == 1)  //  为 1 时，表示当前只选中了一个碎片
@@ -117,6 +118,7 @@ public class PuzzleManager : MonoBehaviour {
         Vector3 unit1_Pos = selectedUnit_1.transform.position;
         Vector3 unit2_Pos = selectedUnit_2.transform.position;
 
+        //  交换两碎片位置
         TweenPosition.Begin(selectedUnit_1, tweenDuration, unit2_Pos);
         TweenPosition.Begin(selectedUnit_2, tweenDuration, unit1_Pos);
 

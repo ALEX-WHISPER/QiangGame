@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ClickBuilding : MonoBehaviour {
     public int building_id;
-    public GameObject thisBuildingIntroduce;
+    public GameObject thisBuildingIntroduce;    //  the introducing board object on clicked
+
     [HideInInspector]
-    public bool ifHadBeenClicked = false;
+    public bool ifHadBeenClicked = false;   //  whether this building has been clicked, which also means, if the next building is able to be clicked
     [HideInInspector]
-    public GameObject thisBuildingIntroduce_Obj;
-    public BuildingIntroduce buildingClickControl;
-    public bool isClicked;
+    public GameObject thisBuildingIntroduce_Obj;    //  prefab of the introducing board of this building
+
+    public BuildingIntroduce buildingClickControl;  //  like the manager to manage all the clickable buildings
+    public bool isTriggerable;  //  turn false once the introducing board been created, turn true once introducing board been destroyed
 
     private int this_id;
     private Transform obj_Parent = null;
@@ -18,6 +20,7 @@ public class ClickBuilding : MonoBehaviour {
     void Start()
     {
         this_id = building_id;
+        isTriggerable = true;
 
         if (this_id < buildingClickControl.buidingClickScript.Length - 1)
             obj_Parent = GameObject.FindWithTag("Buildings").transform;
@@ -25,49 +28,45 @@ public class ClickBuilding : MonoBehaviour {
 
     public void OnClickThisBuilding()
     {
-        //  1. 非第 0 个建筑介绍；  
-        //  2. 上一个建筑介绍已被触发； 
-        //  3. 本建筑介绍尚未被点击（此条件为控制在关闭前只能打开一个介绍物体，否则可无限点击、不断生成） 
-        if (this_id != 0 && (buildingClickControl.buidingClickScript[this_id - 1].ifHadBeenClicked) && !isClicked)
+        //  1. not the index of 0; 2. the last building has been clicked; 3. this building is clickable(introducing board on start/ on destroy) 
+        if (this_id != 0 && (buildingClickControl.buidingClickScript[this_id - 1].ifHadBeenClicked) && isTriggerable)
         {
-            isClicked = true;
             CallOnClick();
+            isTriggerable = false;
+
+            //  destroy the introducing board of the last building
             DestroyLastBuildingContent(this_id -1);
-            return;
         }
-        else if (this_id == 0 && !isClicked)
+        else if (this_id == 0 && isTriggerable)
         {
-            isClicked = true;
             CallOnClick();
+            isTriggerable = false;
         }
     }
 
     void CallOnClick()
     {
-        //  点击后实例化的物体
+        //  instantiate the introducing board
         thisBuildingIntroduce_Obj = Instantiate(thisBuildingIntroduce, 
                             thisBuildingIntroduce.transform.position, 
                             thisBuildingIntroduce.transform.rotation) as GameObject;
 
-        //  若建筑非最后一个，将其置于统一的父物体内
+        //  set parent holder
         if (this_id < buildingClickControl.buidingClickScript.Length - 1 && obj_Parent.transform != null)
         {
             thisBuildingIntroduce_Obj.transform.SetParent(obj_Parent, false);
         }
 
-        //  该建筑已被触发过
+        //  this building has been clicked, which is the neccessary condition to make the next building clickable
         this.ifHadBeenClicked = true;
 
-        //  呼叫全局管理
+        //  move the guide hand to the next position
         buildingClickControl.CalledOnClick();
     }
 
     void DestroyLastBuildingContent(int lastBuilding_Id)
     {
-        for (int i = 0; i < lastBuilding_Id + 1; i++)
-        {
-            buildingClickControl.buidingClickScript[i].isClicked = false;
-        }
+        //  destroy the introducing board object of the last building
         Destroy(buildingClickControl.buidingClickScript[lastBuilding_Id].thisBuildingIntroduce_Obj);  
     }
 }

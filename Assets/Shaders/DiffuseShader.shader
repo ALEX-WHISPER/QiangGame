@@ -1,6 +1,8 @@
 ﻿
+//	gives the shader a name and tells unity where to put it
 Shader "Maze/Diffuse"
 {
+	//	where you can declare input fields to use as the variables in shader processing
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
@@ -28,7 +30,10 @@ Shader "Maze/Diffuse"
         ZWrite Off
         Blend One OneMinusSrcAlpha
 
-        CGPROGRAM
+		//	Processing. use CG/HLSL(high level Shader Language)
+        CGPROGRAM	//	Code start tag
+
+		//	compile a surface shader, use the surface shading function named surf, with the LambertLighting model
         #pragma surface surf Lambert vertex:vert nofog nolightmap nodynlightmap keepalpha noinstancing
         #pragma multi_compile _ PIXELSNAP_ON
         #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
@@ -52,13 +57,15 @@ Shader "Maze/Diffuse"
             o.color = v.color * _Color * _RendererColor;
         }
 
+		//	input: Input struct, output: material, which stores the variables in the effect that we see
         void surf (Input IN, inout SurfaceOutput o)
         {
-            fixed4 c = SampleSpriteTexture (IN.uv_MainTex) * IN.color;
-            o.Albedo = c.rgb * c.a;
-            o.Alpha = c.a;
+            fixed4 c = SampleSpriteTexture (IN.uv_MainTex) * IN.color;	//	利用uv取图片获得纹理贴图，再乘以color
+            o.Albedo = c.rgb * c.a;	//	反射值
+            o.Alpha = c.a;	//	透明度
         }
-        ENDCG
+        ENDCG	//	code end tag
+		//	Processing
     }
 
 Fallback "Transparent/VertexLit"

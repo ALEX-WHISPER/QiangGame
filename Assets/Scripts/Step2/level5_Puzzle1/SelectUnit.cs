@@ -26,7 +26,7 @@ public class SelectUnit : MonoBehaviour {
         if (Input.GetButtonDown("Fire1") && !isSelected && !gameOver && puzzleManager.mouseInPuzzle)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawLine(Input.mousePosition, transform.position, Color.red);
+            //Debug.DrawLine(Input.mousePosition, transform.position, Color.red);
             RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, gameObject.transform.position);
             if (hitInfo.transform != null)
             {

@@ -27,7 +27,6 @@ public class LatConversation : Conversation
     protected override void Start()
     {
         count = -1;
-        GetComponent<ClicktoMove>().enabled = false;
         base.Start();
     }
 
@@ -61,17 +60,24 @@ public class LatConversation : Conversation
     {
         if (comics[0].activeSelf == true)   //  第一张漫画为激活状态
         {  
+            //  set position of btn_TurnPage
             GameObject.Find("TurnPage").transform.position = btn_PageTurnPos[1];
+
+            //  deactivate the first page, which tends to display the second page
             comics[0].SetActive(false);
         }
         else
         {
+            //  set position of btn_TurnPage
             GameObject.Find("TurnPage").transform.position = btn_PageTurnPos[0];
+
+            //  activate the first page, which tends to block the second page
             comics[0].SetActive(true);
         }
         ChangeTurnPageBtnForm();
     }
 
+    //  reverse scale.x to change the arrow direction
     void ChangeTurnPageBtnForm()
     {
         Vector2 theScale = GameObject.Find("TurnPage").transform.localScale;
@@ -97,6 +103,4 @@ public class LatConversation : Conversation
     {
         SceneManager.LoadScene(nextLevelName);
     }
-
-
 }

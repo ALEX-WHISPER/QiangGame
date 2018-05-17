@@ -34,6 +34,7 @@ public class BothNoteControlTest : MonoBehaviour {
         {
             ifNoteEnter = false;
             note_Obj = null;
+
             if(!ifSuccess)
             {
                 gameManager.AddHitPoints(false);
@@ -43,6 +44,7 @@ public class BothNoteControlTest : MonoBehaviour {
 
     void Update()
     {
+        //  click both sides to trigger successful hit on double note
         if (leftNoteControl.isClick && rightNoteControl.isClick && ifNoteEnter)
         {
             ifSuccess = true;

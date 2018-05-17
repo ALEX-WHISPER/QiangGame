@@ -18,11 +18,12 @@ public abstract class Conversation : MonoBehaviour {
 
 	protected List<string> heroWords;
 	protected List<string> NPCWords;
+
     private Text NPCText;
     private Text heroText;
-    //public Text NPCText;
-    //private Text heroText;
+
     protected Text markedWords;
+
 	protected void Awake()
 	{
 		heroWords = new List<string> ();
@@ -30,8 +31,7 @@ public abstract class Conversation : MonoBehaviour {
 
         NPCText = NPCTalkingPanel.GetComponentInChildren<Text>();
         heroText = heroTalkingPanel.GetComponentInChildren<Text>();
-        //NPCText = GameObject.FindWithTag("NPCText").GetComponent<Text>();
-        //heroText = GameObject.FindWithTag("heroText").GetComponent<Text>();
+
         if (GameObject.Find("MarkedWords") != null)
         {
             markedWords = GameObject.Find("MarkedWords").GetComponent<Text>();
@@ -61,6 +61,7 @@ public abstract class Conversation : MonoBehaviour {
                 }       
             }
 
+            //  8: conversation is over, deactivate all the talking panel
             if (count == 2 * NPCWords.Count)
             {
                 isAlreadyTalk = true;
@@ -70,6 +71,7 @@ public abstract class Conversation : MonoBehaviour {
                 return;
             }
 
+            //  1,3,5,7: npc talking
             if (count % 2 != 0)
             {
                 NPCText.text = NPCWords[(count - 1) / 2];
@@ -77,6 +79,7 @@ public abstract class Conversation : MonoBehaviour {
                 heroTalkingPanel.SetActive(false);
                 NPCTalkingPanel.SetActive(true);
             }
+            //  0,2,4,6: hero talking
             else
             {
                 heroText.text = heroWords[count / 2];

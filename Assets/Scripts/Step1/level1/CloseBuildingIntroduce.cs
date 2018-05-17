@@ -14,6 +14,8 @@ public class CloseBuildingIntroduce : MonoBehaviour {
     void OnClickThisBtn(GameObject go)
     {
         Destroy(go.transform.parent.gameObject);
-        buildingClickControl.buidingClickScript[this_id].isClicked = false;
+
+        //  after close the introducing board, set the clickable building is clickable again
+        buildingClickControl.buidingClickScript[this_id].isTriggerable = true;
     }
 }

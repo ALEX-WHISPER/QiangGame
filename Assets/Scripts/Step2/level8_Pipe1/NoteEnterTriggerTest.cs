@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -33,7 +31,7 @@ public class NoteEnterTriggerTest : MonoBehaviour {
         {
             ifNoteEnter = true;
             ifSuccess = false;
-            currentNote.note_Obj = other.gameObject;
+            currentNote.note_Obj = other.gameObject;    //  current note that enters the trigger area currently
         }
         if (other.tag == noteTagName.longNote_L || other.tag == noteTagName.longNote_R) currentNote.ifLong = true;
         if (other.tag == noteTagName.shortNote_L || other.tag == noteTagName.shortNote_R) currentNote.ifLong = false;
@@ -48,6 +46,7 @@ public class NoteEnterTriggerTest : MonoBehaviour {
         {
             ifNoteEnter = false;
 
+            //  miss the note
             if(!ifSuccess)
             {
                 gameManager.AddHitPoints(false);
@@ -55,14 +54,20 @@ public class NoteEnterTriggerTest : MonoBehaviour {
         }
     }
 
+    //  successful hit, add hit points and score value
     public void NoteSuccess()
     {
+        //  instantiate the explosion effect
         Vector2 explotionPos = new Vector2(currentNote.note_Obj.transform.position.x, transform.position.y);
         Instantiate(successExplosion, explotionPos, successExplosion.transform.rotation);
+
+        //  destroy the note
         DestroyNote();
 
+        //  add hit points
         gameManager.AddHitPoints(true);
 
+        //  add score value based on note type
         if (currentNote.ifLong)
         {
             gameManager.AddScorePoints("long");

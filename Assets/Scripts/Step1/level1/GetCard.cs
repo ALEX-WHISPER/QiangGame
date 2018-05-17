@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GetCard : MonoBehaviour {
@@ -34,11 +32,13 @@ public class GetCard : MonoBehaviour {
         ifCardShowing = true;
     }
 
+    //  scale the card from 0 to a target size within a duration
     void CardTweenScale()
     {
         TweenScale.Begin(card, cardShowDuration, cardShowScale);
     }
 
+    //  click the card to flip
     public void TurnCard()
     {
         if (ifCardOnFrontSide)
@@ -51,9 +51,9 @@ public class GetCard : MonoBehaviour {
             GameObject.FindWithTag("Card").GetComponent<Image>().sprite = cardFrontSide;
             ifCardOnFrontSide = true;
         }
-            
     }
 
+    //  close the card panel
     public void ClickCloseCard()
     {
         card.SetActive(false);

@@ -18,7 +18,6 @@ public class NoteMoveTest : MonoBehaviour
 
     void Start()
     {
-        //MoveDown();
         Debug.Log("Start: " + Time.time);
     }
 

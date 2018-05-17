@@ -1,13 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Hit goat head to enter game
+/// </summary>
 public class BtnControl : MonoBehaviour
 {
     public GameObject goatAnim;
     public GameObject bgAnim;
     public GameObject girlAnim;
+
     public float girlAnimDelay;
+
     public void ClickStartBtn()
     {
         //  羊头动画(position, scale)
