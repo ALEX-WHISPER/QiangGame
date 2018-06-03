@@ -92,3 +92,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Step3/level11_Stone.unity
     guid: e028ac930ffdcd441a5d4223a2308abb
+  m_configObjects: {}

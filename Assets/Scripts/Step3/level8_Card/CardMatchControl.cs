@@ -23,6 +23,7 @@ public class CardMatchControl : MonoBehaviour {
 
         MatchControl();
 
+        //  if game over, activate the result panel in 2 seconds
         if (CheckGameOver())
         {
             isGameOver = true;
@@ -36,6 +37,7 @@ public class CardMatchControl : MonoBehaviour {
         {
             SendMatching();
 
+            //  once the selected id is equal, set this match be success
             if (maleCardID == femaleCardID)
             {
                 MatchSuccess();
@@ -70,6 +72,7 @@ public class CardMatchControl : MonoBehaviour {
 
     public void SetSelectingFemaleID(int femaleCardID)
     {
+        //  if the previous one is already female, return the result of false
         if (isAlreadyFemale)
         {
             for (int i = 0; i < cards_Female.Length; i++)
@@ -81,8 +84,12 @@ public class CardMatchControl : MonoBehaviour {
         }
         else
         {
+            //  set this matching female card's id
             this.femaleCardID = femaleCardID;
+
+            //  add the selected count
             CountingControl();
+
             isAlreadyFemale = true;
         }
     }
@@ -93,24 +100,28 @@ public class CardMatchControl : MonoBehaviour {
             selectedCount++;
     }
 
+    //  the current 2 selected characters are matched successfully
     private void MatchSuccess()
     {
         cards_Male[maleCardID].GetMatchResult(true);
         cards_Female[femaleCardID].GetMatchResult(true);
     }
 
+    //  the current 2 selected characters are failed to match
     private void MatchFail()
     {
         cards_Male[maleCardID].GetMatchResult(false);
         cards_Female[femaleCardID].GetMatchResult(false);
     }
 
+    //  the current 2 selected characters in under handling
     private void SendMatching()
     {
         cards_Male[maleCardID].IsHandling(true);
         cards_Female[femaleCardID].IsHandling(true);
     }
 
+    //  matching process is over
     private void SendMatched()
     {
         cards_Male[maleCardID].IsHandling(false);
@@ -126,6 +137,7 @@ public class CardMatchControl : MonoBehaviour {
         isAlreadyFemale = false;
     }
 
+    //  游戏胜利条件判断：所有角色匹配状态均为成功时，游戏胜利，否则游戏失败
     private bool CheckGameOver()
     {
         foreach(Card_Character card in cards_All)
@@ -138,11 +150,13 @@ public class CardMatchControl : MonoBehaviour {
         return true;
     }
 
+    //  activate victory UI panel
     private void UIPanelActive()
     {
         UIPanel.SetActive(true);
     }
 
+    //  click the btn in victory panel to enter the next level
     public void ClickExitBtn()
     {
         SceneManager.LoadScene(nextLevelName);

@@ -43,7 +43,7 @@ public class PlayerMoveInMaze : MonoBehaviour {
         //    }
         //}
 
-#if UNITY_STANDALONE || UNITY_WEBPLAYER
+#if UNITY_EDITOR
         if(Time.time > nextMove)
         {
             nextMove = Time.time + reMovePeriod;
@@ -63,7 +63,7 @@ public class PlayerMoveInMaze : MonoBehaviour {
                 AttemptMove(h, v);
             }
         }
-#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+#elif UNITY_ANDROID
         //Check if Input has registered more than zero touches
         if (Input.touchCount > 0)
         {
@@ -114,13 +114,15 @@ public class PlayerMoveInMaze : MonoBehaviour {
 
     protected void AttemptMove(int h, int v)
     {
+        Debug.Log(string.Format("h: {0}, v: {1}", h, v));
         Vector2 start = transform.position;
         Vector2 end = start + new Vector2(h, v);
 
         RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
 
-        if (hit.transform == null)
+        if (hit.transform == null) {
             StartCoroutine(SmoothMovement(end));
+        }
     }
 
     protected IEnumerator SmoothMovement(Vector3 endPos)

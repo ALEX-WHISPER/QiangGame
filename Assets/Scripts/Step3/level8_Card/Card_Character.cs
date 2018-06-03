@@ -46,6 +46,7 @@ public class Card_Character : MonoBehaviour, IPointerClickHandler {
         }
     }
 
+    //  if the para is false, then flip the card back
     public void GetMatchResult(bool isMatched)
     {
         if (isSuccess) return;

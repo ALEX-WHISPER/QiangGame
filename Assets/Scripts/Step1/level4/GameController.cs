@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour {
     {
         Replay();
     }
-
+    
     //  go to next level
     public void ClickContinue()
     {
@@ -97,4 +97,10 @@ public class GameController : MonoBehaviour {
     {
         GetComponent<GetCard>().ShowCard();
     }
+
+    #region TEST
+    public void ForeToEnterNextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    #endregion
 }
